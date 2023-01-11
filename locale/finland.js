@@ -43,7 +43,7 @@
     },
     "Itsenäisyyspäivä": {
       date: '12/6',
-      keywords: ['jouluaatto']
+      keywords: ['itsenaisyyspaiva']
     },
     "Jouluaatto": {
       date: '12/24',

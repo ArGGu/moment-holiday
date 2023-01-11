@@ -51,6 +51,6 @@ gulp.task('build', function() {
   });
 
   generate(null, null, true, 'moment-holiday.js');
-  generate(['Finland'], 'Finland', true, 'moment-holiday-fi.js');
+  generate(['Finland', 'Easter'], 'Finland', true, 'moment-holiday-fi.js');
   generate(locales, 'United States', true, 'moment-holiday-pkg.js');
 });

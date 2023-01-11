@@ -2,9 +2,18 @@
 //! locale : Easter Related Holidays
 //! author : Kodie Grantham : https://github.com/kodie
 
-(function() {
-  var moment = (typeof require !== 'undefined' && require !== null) && !require.amd ? require('moment') : this.moment;
+(function (root, factory) {
+    "use strict";
 
+    /*global define*/
+    if (typeof module === 'object' && module.exports) {
+        module.exports = factory(require('moment')); // Node
+    } else if (typeof define === 'function' && define.amd) {
+        define(['moment'], factory);                 // AMD
+    } else {
+        factory(root.moment);                        // Browser
+    }
+}(this, function (moment) {
   moment.holidays.easter = {
     "Ash Wednesday": {
       date: 'easter-46'
@@ -90,5 +99,5 @@
     }
   });
 
-  if ((typeof module !== 'undefined' && module !== null ? module.exports : void 0) != null) { module.exports = moment; }
-}).call(this);
+  return moment;
+}));
