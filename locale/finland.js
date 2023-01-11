@@ -2,9 +2,18 @@
 //! locale : Finland
 //! author : Kodie Grantham : https://github.com/kodie
 
-(function() {
-  var moment = (typeof require !== 'undefined' && require !== null) && !require.amd ? require('moment') : this.moment;
+(function (root, factory) {
+    "use strict";
 
+    /*global define*/
+    if (typeof module === 'object' && module.exports) {
+        module.exports = factory(require('moment')); // Node
+    } else if (typeof define === 'function' && define.amd) {
+        define(['moment'], factory);                 // AMD
+    } else {
+        factory(root.moment);                        // Browser
+    }
+}(this, function (moment) {
   moment.holidays.finland = {
     "Uudenvuodenpäivä": {
       date: '1/1',
@@ -13,16 +22,32 @@
     "Loppiainen": {
       date: '1/6'
     },
+    "Pitkäperjantai": {
+      date: 'easter-2',
+      keywords: ['pitkaperjantai', 'good', 'friday']
+    },
+    "Toinen Pääsiäispäivä": {
+      date: 'easter+1',
+      keywords: ['paasiaispaiva', 'easter', 'monday'],
+    },
     "Vappu": {
       date: '5/1'
     },
-    "Juhannuspäivä": {
-      date: '6/(6,[21])',
-      keywords: ['juhannuspaiva']
+    "Helatorstai": {
+      date: 'easter+39',
+      keywords: ['ascension']
     },
-    "Pyhäinpäivä": {
-      date: '11/(6,[1])',
-      keywords: ['pyhainpaiva']
+    "Juhannusaatto": {
+      date: '6/(5,[19])',
+      keywords: ['juhannusaatto']
+    },
+    "Itsenäisyyspäivä": {
+      date: '12/6',
+      keywords: ['jouluaatto']
+    },
+    "Jouluaatto": {
+      date: '12/24',
+      keywords: ['jouluaatto']
     },
     "Joulupäivä": {
       date: '12/25',
@@ -32,25 +57,7 @@
       date: '12/26',
       keywords: ['tapaninpaiva']
     },
-    "Pitkäperjantai": {
-      date: 'easter-2',
-      keywords: ['pitkaperjantai', 'good', 'friday']
-    },
-    "Pääsiäispäivä": {
-      date: 'easter',
-      keywords: ['paasiaispaiva', 'easter'],
-      keywords_n: ['toinen', 'monday']
-    },
-    "Toinen Pääsiäispäivä": {
-      date: 'easter+1',
-      keywords: ['paasiaispaiva', 'easter', 'monday'],
-      keywords_y: ['toinen']
-    },
-    "Helatorstai": {
-      date: 'easter+39',
-      keywords: ['ascension']
-    }
   };
 
-  if ((typeof module !== 'undefined' && module !== null ? module.exports : void 0) != null) { module.exports = moment; }
-}).call(this);
+  return moment;
+}));

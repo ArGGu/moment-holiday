@@ -3,6 +3,7 @@ index.js
 npm-debug.log
 node_modules
 /build/*
+!/build/moment-holiday-fi.js
 !/build/moment-holiday-pkg.min.js
 !/build/moment-holiday-pkg.min.js.map
 !/build/moment-holiday-us.min.js

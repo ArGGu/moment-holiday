@@ -34,13 +34,13 @@
   },
   "homepage": "https://github.com/kodie/moment-holiday",
   "license": "MIT",
-  "main": "./build/moment-holiday-us.min.js",
+  "main": "./build/moment-holiday-fi.js",
   "files": [
     "build/",
     "locale/"
   ],
   "dependencies": {
-    "moment": ">=2.0.0"
+    "moment": ">=2.9.0"
   },
   "devDependencies": {
     "ava": ">=0.10.0",

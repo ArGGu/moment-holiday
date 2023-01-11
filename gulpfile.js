@@ -23,18 +23,18 @@ function generate(locales, set, minify, filename) {
 
   if (set) {
     if (set.constructor !== Array) { set = [set]; }
-    append = "\n//! Set default locales\n(function() {\n  var moment = (typeof require !== 'undefined' && require !== null) && !require.amd ? require('moment') : this.moment;";
+    append = "\n//! Set default locales\n(function() {\n  var moment = require('moment')";
     set.forEach(function(l){ append += '\n  moment.modifyHolidays.add("' + l + '");'; });
     append += '\n}).call(this);';
   }
 
   return gulp.src(files)
-    .pipe(gulpif(minify, sourcemaps.init()))
+    // .pipe(gulpif(minify, sourcemaps.init()))
     .pipe(concat(filename || 'moment-holiday-custom.js'))
     .pipe(gulpif(append !== '', inject.append(append)))
-    .pipe(gulpif(minify, uglify({output: {comments: '/^!/'}})))
-    .pipe(gulpif(minify, rename({ extname: '.min.js' })))
-    .pipe(gulpif(minify, sourcemaps.write('.')))
+    // .pipe(gulpif(minify, uglify({output: {comments: '/^!/'}})))
+    // .pipe(gulpif(minify, rename({ extname: '.min.js' })))
+    // .pipe(gulpif(minify, sourcemaps.write('.')))
     .pipe(gulp.dest('build/'));
 }
 
@@ -51,6 +51,6 @@ gulp.task('build', function() {
   });
 
   generate(null, null, true, 'moment-holiday.js');
-  generate(['United States', 'Easter'], 'United States', true, 'moment-holiday-us.js');
+  generate(['Finland'], 'Finland', true, 'moment-holiday-fi.js');
   generate(locales, 'United States', true, 'moment-holiday-pkg.js');
 });
